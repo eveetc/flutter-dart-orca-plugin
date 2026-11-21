@@ -1,0 +1,270 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stablyai/orca/main/docs/schemas/plugins/orca-plugin.v2.schema.json",
+  "manifestVersion": 2,
+  "id": "flutter-dart",
+  "name": "Flutter & Dart Tools",
+  "version": "0.3.0",
+  "description": "Dart syntax, Flutter run configurations, hot reload, widget inspector, builds, project checks and Android emulator management in Orca.",
+  "author": {
+    "name": "eveetc",
+    "url": "https://github.com/eveetc"
+  },
+  "repository": "https://github.com/eveetc/flutter-dart-orca-plugin",
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "cover": {
+    "path": "assets/cover.png",
+    "alt": "Flutter & Dart Tools for Orca: run configurations and hot reload, widget inspector, builds with signing checks, packages, checks and emulators."
+  },
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.ts",
+  "contributes": {
+    "panels": [
+      {
+        "id": "flutter-tools",
+        "title": "Flutter & Dart",
+        "icon": "code",
+        "entry": "src/panel.tsx",
+        "ui": "components"
+      }
+    ],
+    "syntaxes": [
+      {
+        "id": "dart",
+        "title": "Dart",
+        "scopeName": "source.dart",
+        "path": "syntaxes/dart.tmLanguage.json",
+        "configuration": "syntaxes/language-configuration.json",
+        "extensions": [
+          ".dart"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "id": "flutter.refresh",
+        "title": "Flutter: Refresh projects and devices",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.run",
+        "title": "Flutter: Run selected configuration",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.runProfile",
+        "title": "Flutter: Run in profile mode",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.runRelease",
+        "title": "Flutter: Run in release mode",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.attach",
+        "title": "Flutter: Attach to running app",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.reload",
+        "title": "Flutter: Hot reload",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.restart",
+        "title": "Flutter: Hot restart",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.stop",
+        "title": "Flutter: Stop app",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.nextDevice",
+        "title": "Flutter: Next device",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.screenshot",
+        "title": "Flutter: Save screenshot",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.build",
+        "title": "Flutter: Build with last build settings",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.analyze",
+        "title": "Dart: Analyze",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.test",
+        "title": "Dart: Run tests",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.coverage",
+        "title": "Dart: Run tests with coverage",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.testFailed",
+        "title": "Dart: Run failed tests again",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.format",
+        "title": "Dart: Format project",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.fix",
+        "title": "Dart: Apply fixes (dart fix --apply)",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.pubGet",
+        "title": "Dart: Get dependencies (pub get)",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.pubUpgrade",
+        "title": "Dart: Upgrade dependencies (pub upgrade)",
+        "when": "workspace"
+      },
+      {
+        "id": "dart.codegen",
+        "title": "Dart: Generate code (build_runner)",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.genL10n",
+        "title": "Flutter: Generate localizations",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.clean",
+        "title": "Flutter: Clean",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.doctor",
+        "title": "Flutter: Doctor",
+        "when": "workspace"
+      },
+      {
+        "id": "flutter.upgrade",
+        "title": "Flutter: Upgrade SDK (flutter upgrade)",
+        "when": "workspace"
+      }
+    ],
+    "statusBarItems": [
+      {
+        "id": "flutter",
+        "text": "Flutter & Dart",
+        "icon": "code",
+        "tooltip": "Refresh Flutter projects and devices",
+        "command": "flutter.refresh"
+      }
+    ],
+    "events": [
+      {
+        "on": "workspace.removed"
+      }
+    ],
+    "settings": [
+      {
+        "key": "flutterExecutable",
+        "title": "Flutter executable",
+        "type": "string",
+        "default": "",
+        "placeholder": "/path/to/flutter/bin/flutter",
+        "description": "Leave empty to use the project's FVM SDK, then Flutter on PATH. A path, not a shell command."
+      },
+      {
+        "key": "dartExecutable",
+        "title": "Dart executable",
+        "type": "string",
+        "default": "",
+        "placeholder": "/path/to/dart",
+        "description": "Leave empty to use Dart beside Flutter, then Dart on PATH."
+      },
+      {
+        "key": "androidSdkPath",
+        "title": "Android SDK path",
+        "type": "string",
+        "default": "",
+        "placeholder": "/path/to/Android/Sdk",
+        "description": "Used for creating Android virtual devices from installed system images."
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "flutter.run",
+        "key": "mod+shift+f10"
+      },
+      {
+        "command": "flutter.reload",
+        "key": "mod+\\"
+      },
+      {
+        "command": "flutter.restart",
+        "key": "mod+shift+\\"
+      },
+      {
+        "command": "flutter.stop",
+        "key": "mod+f2"
+      },
+      {
+        "command": "dart.format",
+        "key": "mod+alt+l"
+      },
+      {
+        "command": "flutter.build",
+        "key": "mod+shift+f9"
+      }
+    ],
+    "newFiles": [
+      {
+        "id": "stateless-widget",
+        "title": "New Flutter StatelessWidget",
+        "extension": ".dart",
+        "template": "templates/stateless_widget.dart"
+      },
+      {
+        "id": "stateful-widget",
+        "title": "New Flutter StatefulWidget",
+        "extension": ".dart",
+        "template": "templates/stateful_widget.dart"
+      },
+      {
+        "id": "animated-widget",
+        "title": "New Flutter widget with AnimationController",
+        "extension": ".dart",
+        "template": "templates/animated_widget.dart"
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "kind": "workspace:read"
+    },
+    {
+      "kind": "workspace:write"
+    },
+    {
+      "kind": "storage:own"
+    },
+    {
+      "kind": "settings:own"
+    }
+  ]
+}

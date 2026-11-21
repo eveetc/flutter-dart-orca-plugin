@@ -1,0 +1,21 @@
+{
+  "name": "flutter-dart-orca-plugin",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Dart syntax and Flutter workflow tools for Orca",
+  "scripts": {
+    "types": "orca plugin types . --json",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "orca plugin test . --json",
+    "check": "orca plugin check . --json",
+    "validate": "orca plugin validate . --json",
+    "screenshots": "python3 scripts/screenshots.py",
+    "art": "python3 scripts/art.py"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}
